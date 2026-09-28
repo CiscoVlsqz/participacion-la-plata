@@ -1,0 +1,40 @@
+{
+  "slug": "plan-arbolado-urbano-barrio-norte",
+  "titulo": "Plan de Arbolado Urbano — Barrio Norte",
+  "estado": "abierta",
+  "modalidad": "Virtual",
+  "fechaTexto": "Jueves 10 de septiembre de 2026 - Virtual",
+  "fechaInicioParticipacion": "2026-09-10",
+  "fechaCierreParticipacion": "2026-10-05",
+  "ejeGestion": "Arbolado y Ambiente",
+  "dependenciaRequirente": "Dirección General de Espacios Verdes",
+  "expediente": "CONSULTA PÚBLICA – PLAN DE ARBOLADO URBANO BARRIO NORTE – DIRECCIÓN GENERAL DE ESPACIOS VERDES",
+  "etiquetas": ["Barrio Norte", "Arbolado Público"],
+  "descripcionParrafos": [
+    "El Municipio somete a consulta pública el Plan de Arbolado Urbano para Barrio Norte, que propone la reposición de ejemplares faltantes en veredas, la incorporación de especies nativas y un cronograma de poda y mantenimiento para los próximos dos años.",
+    "El plan busca ampliar la cobertura verde del barrio, priorizando especies de bajo mantenimiento y raíces compatibles con la infraestructura de veredas y servicios existentes, y estableciendo criterios claros para futuras intervenciones.",
+    "Por tratarse de una consulta en modalidad virtual, todos los aportes se reciben exclusivamente a través del formulario disponible en esta página durante el plazo de participación establecido."
+  ],
+  "archivosDescargables": [
+    { "nombre": "Memoria Descriptiva.pdf", "peso": "1.4 MB", "url": "#" },
+    { "nombre": "Especificaciones Técnicas.pdf", "peso": "980 KB", "url": "#" }
+  ],
+  "disposicionApertura": { "nombre": "Disposición de Apertura N° 63-2026.pdf", "peso": "275 KB", "url": "#" },
+  "disposicionCierre": null,
+  "enlacesRelevantes": [
+    { "nombre": "Listado de Especies Nativas Recomendadas", "url": "#" },
+    { "nombre": "Ordenanza de Arbolado Público", "url": "#" }
+  ],
+  "galeria": [
+    { "alt": "Imagen ilustrativa de veredas con arbolado a reponer — placeholder de maqueta" },
+    { "alt": "Imagen ilustrativa de especies nativas propuestas — placeholder de maqueta" },
+    { "alt": "Imagen ilustrativa del cronograma de poda — placeholder de maqueta" }
+  ],
+  "cantidadPresentaciones": 3,
+  "informeFinal": null,
+  "comentariosMock": [
+    { "autor": "Paula I.", "fecha": "2026-09-12", "texto": "Muy buena idea reponer árboles, en mi cuadra faltan varios desde hace años.", "estadoModeracion": "publicado" },
+    { "autor": "Gustavo T.", "fecha": "2026-09-16", "texto": "Ojalá elijan especies que no levanten las veredas, ya tuvimos problemas con eso antes.", "estadoModeracion": "publicado" },
+    { "autor": "Valeria D.", "fecha": "2026-09-20", "texto": "Me gustaría que el cronograma de poda se publique con anticipación para organizarnos.", "estadoModeracion": "publicado" }
+  ]
+}

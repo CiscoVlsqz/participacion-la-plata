@@ -1,0 +1,35 @@
+{
+  "slug": "recambio-luminarias-parque-saavedra",
+  "titulo": "Recambio de Luminarias — Parque Saavedra",
+  "estado": "programada",
+  "modalidad": "Presencial",
+  "fechaTexto": "Lunes 2 de noviembre de 2026 - Presencial",
+  "fechaInicioParticipacion": "2026-11-02",
+  "fechaCierreParticipacion": "2026-11-23",
+  "ejeGestion": "Espacio Público y Paseos",
+  "dependenciaRequirente": "Dirección General de Alumbrado Público",
+  "expediente": "CONSULTA PÚBLICA – RECAMBIO DE LUMINARIAS PARQUE SAAVEDRA – DIRECCIÓN GENERAL DE ALUMBRADO PÚBLICO",
+  "etiquetas": ["Parque Saavedra", "Alumbrado Público"],
+  "descripcionParrafos": [
+    "La Municipalidad de La Plata someterá a consulta pública el proyecto de recambio de luminarias en el Parque Saavedra, que propone reemplazar el sistema de iluminación existente por tecnología LED de mayor eficiencia y alcance.",
+    "La iniciativa busca mejorar la percepción de seguridad y el uso nocturno del parque, reduciendo a la vez el consumo energético del sistema de alumbrado, sin modificar la disposición actual de columnas en los sectores ya cubiertos.",
+    "La instancia de participación se realizará de forma presencial y estará destinada a recoger las opiniones de los vecinos frecuentes del parque sobre el alcance del recambio propuesto."
+  ],
+  "archivosDescargables": [
+    { "nombre": "Memoria Descriptiva.pdf", "peso": "1.3 MB", "url": "#" },
+    { "nombre": "Especificaciones Técnicas.pdf", "peso": "1.1 MB", "url": "#" }
+  ],
+  "disposicionApertura": null,
+  "disposicionCierre": null,
+  "enlacesRelevantes": [
+    { "nombre": "Plan Municipal de Eficiencia Energética", "url": "#" }
+  ],
+  "galeria": [
+    { "alt": "Imagen ilustrativa del sistema de iluminación actual del Parque Saavedra — placeholder de maqueta" },
+    { "alt": "Imagen ilustrativa de la nueva luminaria LED propuesta — placeholder de maqueta" },
+    { "alt": "Imagen ilustrativa del recorrido nocturno del parque — placeholder de maqueta" }
+  ],
+  "cantidadPresentaciones": 0,
+  "informeFinal": null,
+  "comentariosMock": []
+}

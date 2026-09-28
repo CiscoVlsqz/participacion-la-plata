@@ -1,0 +1,40 @@
+{
+  "slug": "renovacion-plaza-belgrano",
+  "titulo": "Renovación Integral de la Plaza Belgrano",
+  "estado": "abierta",
+  "modalidad": "Mixta",
+  "fechaTexto": "Martes 15 de septiembre de 2026 - Mixta",
+  "fechaInicioParticipacion": "2026-09-15",
+  "fechaCierreParticipacion": "2026-10-10",
+  "ejeGestion": "Espacio Público y Paseos",
+  "dependenciaRequirente": "Dirección General de Espacios Verdes",
+  "expediente": "CONSULTA PÚBLICA – RENOVACIÓN INTEGRAL PLAZA BELGRANO – DIRECCIÓN GENERAL DE ESPACIOS VERDES",
+  "etiquetas": ["Barrio Norte", "Plaza Belgrano"],
+  "descripcionParrafos": [
+    "El Municipio de La Plata presenta a consulta pública el proyecto de renovación integral de la Plaza Belgrano, que contempla la reforma de los juegos infantiles, la incorporación de equipamiento saludable para adultos y la renovación del solado de los circuitos internos del paseo.",
+    "La propuesta busca actualizar un espacio de fuerte uso familiar y vecinal, mejorando la seguridad del equipamiento existente y ampliando la oferta recreativa para distintas franjas etarias, sin modificar la superficie parquizada actual.",
+    "La modalidad de esta consulta es mixta: se recibirán aportes tanto en un encuentro presencial en el barrio como a través del formulario virtual disponible en esta página, ambos con la misma validez para la instancia participativa."
+  ],
+  "archivosDescargables": [
+    { "nombre": "Memoria Descriptiva.pdf", "peso": "1.9 MB", "url": "#" },
+    { "nombre": "Planos Generales.pdf", "peso": "3.6 MB", "url": "#" }
+  ],
+  "disposicionApertura": { "nombre": "Disposición de Apertura N° 58-2026.pdf", "peso": "287 KB", "url": "#" },
+  "disposicionCierre": null,
+  "enlacesRelevantes": [
+    { "nombre": "Programa Municipal de Juegos Seguros", "url": "#" }
+  ],
+  "galeria": [
+    { "alt": "Imagen ilustrativa del sector de juegos infantiles — placeholder de maqueta" },
+    { "alt": "Imagen ilustrativa del circuito de equipamiento saludable — placeholder de maqueta" },
+    { "alt": "Imagen ilustrativa del solado a renovar — placeholder de maqueta" }
+  ],
+  "cantidadPresentaciones": 6,
+  "informeFinal": null,
+  "comentariosMock": [
+    { "autor": "Sofía R.", "fecha": "2026-09-17", "texto": "Excelente que se mejoren los juegos, los actuales ya están bastante deteriorados.", "estadoModeracion": "publicado" },
+    { "autor": "Martín A.", "fecha": "2026-09-19", "texto": "Ojalá se incluyan más bancos a la sombra, en verano se hace difícil quedarse en la plaza.", "estadoModeracion": "publicado" },
+    { "autor": "Carolina N.", "fecha": "2026-09-22", "texto": "Me parece muy bueno sumar equipamiento para adultos mayores, en el barrio hay muchos vecinos grandes.", "estadoModeracion": "publicado" },
+    { "autor": "Hernán V.", "fecha": "2026-09-24", "texto": "Sería ideal que el nuevo solado sea antideslizante, sobre todo para los chicos que corren en el sector de juegos.", "estadoModeracion": "publicado" }
+  ]
+}

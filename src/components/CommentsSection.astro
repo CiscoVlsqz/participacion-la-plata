@@ -1,0 +1,207 @@
+---
+interface Comentario {
+  autor: string;
+  fecha: string;
+  texto: string;
+  estadoModeracion: string;
+}
+
+interface Props {
+  slug: string;
+  comentariosMock: Comentario[];
+}
+
+const { slug, comentariosMock } = Astro.props;
+
+function formatearFecha(fecha: string) {
+  const [anio, mes, dia] = fecha.split('-');
+  return `${dia}/${mes}/${anio}`;
+}
+---
+
+<section id="comentarios" class="comments-section" aria-label="Comentarios y aportes recibidos" data-slug={slug}>
+  <div class="comments-section__header">
+    <h2>Comentarios y aportes recibidos (<span id="comments-count">{comentariosMock.length}</span>)</h2>
+    <label class="comments-section__order">
+      Ordenar por:
+      <select id="comments-order">
+        <option value="recientes">Más recientes</option>
+        <option value="antiguos">Más antiguos</option>
+      </select>
+    </label>
+  </div>
+
+  <div id="comments-list" class="comments-section__list">
+    {comentariosMock.map((comentario) => (
+      <article class="comment-card" data-fecha={comentario.fecha}>
+        <div class="comment-card__top">
+          <span class="comment-card__autor">{comentario.autor}</span>
+          <span class="badge badge-publicado">Publicado</span>
+        </div>
+        <p class="comment-card__fecha">{formatearFecha(comentario.fecha)}</p>
+        <p class="comment-card__texto">{comentario.texto}</p>
+      </article>
+    ))}
+  </div>
+
+  <p id="comments-empty" class="comments-section__empty" hidden>
+    Todavía no hay comentarios para esta consulta.
+  </p>
+</section>
+
+<style>
+  .comments-section {
+    margin: 40px 0;
+  }
+
+  .comments-section__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .comments-section__order {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .comments-section__order select {
+    padding: 8px 12px;
+    border-radius: var(--radius-pill);
+    border: 1px solid #D9DCE1;
+    font-family: var(--font-principal);
+  }
+
+  .comments-section__list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .comment-card {
+    background: var(--color-blanco);
+    border-radius: 14px;
+    box-shadow: var(--shadow-card);
+    padding: 16px 20px;
+  }
+
+  .comment-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+
+  .comment-card__autor {
+    font-weight: 700;
+  }
+
+  .comment-card__fecha {
+    margin: 0 0 8px;
+    font-size: 0.78rem;
+    color: #6B6B6B;
+  }
+
+  .comment-card__texto {
+    margin: 0;
+    font-size: 0.92rem;
+  }
+
+  .comments-section__empty {
+    text-align: center;
+    color: #666;
+    padding: 20px;
+  }
+</style>
+
+<script>
+  (() => {
+    const section = document.querySelector<HTMLElement>('.comments-section');
+    if (!section) return;
+
+    const slug = section.dataset.slug || '';
+    const list = document.getElementById('comments-list');
+    const countEl = document.getElementById('comments-count');
+    const emptyEl = document.getElementById('comments-empty');
+    const orderSelect = document.getElementById('comments-order') as HTMLSelectElement | null;
+    const storageKey = `comentarios-pendientes-${slug}`;
+
+    function formatearFecha(fecha: string) {
+      const [anio, mes, dia] = fecha.split('-');
+      return `${dia}/${mes}/${anio}`;
+    }
+
+    function crearTarjeta(comentario: {
+      autor: string;
+      fecha: string;
+      texto: string;
+      estadoModeracion: string;
+    }) {
+      const article = document.createElement('article');
+      article.className = 'comment-card';
+      article.dataset.fecha = comentario.fecha;
+
+      const esPendiente = comentario.estadoModeracion === 'pendiente';
+      const badgeClase = esPendiente ? 'badge-pendiente' : 'badge-publicado';
+      const badgeTexto = esPendiente ? 'Pendiente de aprobación' : 'Publicado';
+
+      article.innerHTML = `
+        <div class="comment-card__top">
+          <span class="comment-card__autor"></span>
+          <span class="badge ${badgeClase}">${badgeTexto}</span>
+        </div>
+        <p class="comment-card__fecha">${formatearFecha(comentario.fecha)}</p>
+        <p class="comment-card__texto"></p>
+      `;
+      article.querySelector('.comment-card__autor')!.textContent = comentario.autor;
+      article.querySelector('.comment-card__texto')!.textContent = comentario.texto;
+
+      return article;
+    }
+
+    function cargarPendientes() {
+      const pendientes = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      pendientes.forEach((comentario: any) => {
+        list?.appendChild(crearTarjeta(comentario));
+      });
+      actualizarContador();
+      ordenar();
+    }
+
+    function actualizarContador() {
+      const total = list?.querySelectorAll('.comment-card').length || 0;
+      if (countEl) countEl.textContent = String(total);
+      if (emptyEl) emptyEl.hidden = total !== 0;
+    }
+
+    function ordenar() {
+      if (!list || !orderSelect) return;
+      const tarjetas = Array.from(list.querySelectorAll<HTMLElement>('.comment-card'));
+      const orden = orderSelect.value;
+      tarjetas.sort((a, b) => {
+        const fechaA = a.dataset.fecha || '';
+        const fechaB = b.dataset.fecha || '';
+        return orden === 'recientes' ? (fechaA < fechaB ? 1 : -1) : fechaA > fechaB ? 1 : -1;
+      });
+      tarjetas.forEach((tarjeta) => list.appendChild(tarjeta));
+    }
+
+    orderSelect?.addEventListener('change', ordenar);
+
+    window.addEventListener('nuevo-comentario', ((event: CustomEvent) => {
+      if (event.detail?.slug !== slug) return;
+      list?.appendChild(crearTarjeta(event.detail.comentario));
+      actualizarContador();
+      ordenar();
+    }) as EventListener);
+
+    cargarPendientes();
+  })();
+</script>

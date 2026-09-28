@@ -1,0 +1,65 @@
+---
+interface Props {
+  totalConsultas: number;
+  totalAportes: number;
+  totalAbiertas: number;
+}
+
+const { totalConsultas, totalAportes, totalAbiertas } = Astro.props;
+---
+
+<section class="stats-block" aria-label="Estadísticas de participación">
+  <div class="container stats-block__grid">
+    <div class="stats-block__item">
+      <span class="stats-block__num">{totalConsultas}</span>
+      <span class="stats-block__label">Consultas publicadas</span>
+    </div>
+    <div class="stats-block__item">
+      <span class="stats-block__num">{totalAportes}</span>
+      <span class="stats-block__label">Aportes ciudadanos recibidos</span>
+    </div>
+    <div class="stats-block__item">
+      <span class="stats-block__num">{totalAbiertas}</span>
+      <span class="stats-block__label">Consultas abiertas actualmente</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats-block {
+    background: var(--color-azul-oscuro);
+    color: var(--color-blanco);
+    padding: 40px 0;
+  }
+
+  .stats-block__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    .stats-block__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .stats-block__item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .stats-block__num {
+    font-size: 2.6rem;
+    font-weight: 800;
+  }
+
+  .stats-block__label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.9;
+  }
+</style>

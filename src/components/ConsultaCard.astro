@@ -1,0 +1,112 @@
+---
+import EstadoBadge from './EstadoBadge.astro';
+
+interface Consulta {
+  slug: string;
+  titulo: string;
+  estado: 'programada' | 'abierta' | 'finalizada';
+  fechaTexto: string;
+  fechaInicioParticipacion: string;
+  fechaCierreParticipacion: string;
+  ejeGestion: string;
+  etiquetas: string[];
+  cantidadPresentaciones: number;
+}
+
+interface Props {
+  consulta: Consulta;
+}
+
+const { consulta } = Astro.props;
+
+const ejeInfo: Record<string, { clase: string; icono: string }> = {
+  'Espacio Público y Paseos': { clase: 'card-eje-espacio-publico', icono: 'fa-tree' },
+  'Obras Hidráulicas y Pluviales': { clase: 'card-eje-hidraulica', icono: 'fa-water' },
+  'Movilidad y Accesibilidad': { clase: 'card-eje-movilidad', icono: 'fa-road' },
+  'Arbolado y Ambiente': { clase: 'card-eje-arbolado', icono: 'fa-leaf' },
+  'Patrimonio y Puesta en Valor': { clase: 'card-eje-patrimonio', icono: 'fa-landmark' },
+};
+
+const { clase, icono } = ejeInfo[consulta.ejeGestion];
+
+function formatearFecha(fecha: string) {
+  const [anio, mes, dia] = fecha.split('-');
+  return `${dia}/${mes}/${anio}`;
+}
+---
+
+<article
+  class="card consulta-card"
+  data-estado={consulta.estado}
+  data-eje={consulta.ejeGestion}
+  data-titulo={consulta.titulo}
+>
+  <div class={`card-franja ${clase}`}>
+    <i class={`fa-solid ${icono}`} aria-hidden="true"></i>
+  </div>
+  <div class="card-body">
+    <EstadoBadge estado={consulta.estado} />
+    <h3><a href={`/consultas/${consulta.slug}`}>{consulta.titulo}</a></h3>
+    <p class="consulta-card__fecha">{consulta.fechaTexto}</p>
+    <p class="consulta-card__eje">{consulta.ejeGestion}</p>
+    <div class="consulta-card__chips">
+      {consulta.etiquetas.slice(0, 3).map((etiqueta) => (
+        <span class="chip">{etiqueta}</span>
+      ))}
+    </div>
+    <p class="consulta-card__rango">
+      <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+      {formatearFecha(consulta.fechaInicioParticipacion)} – {formatearFecha(consulta.fechaCierreParticipacion)}
+    </p>
+    {consulta.cantidadPresentaciones > 0 && (
+      <p class="consulta-card__aportes">
+        <i class="fa-solid fa-comments" aria-hidden="true"></i>
+        {consulta.cantidadPresentaciones} aportes recibidos
+      </p>
+    )}
+  </div>
+</article>
+
+<style>
+  .consulta-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+  }
+
+  .consulta-card h3 a:hover {
+    color: var(--color-azul-oscuro);
+  }
+
+  .consulta-card__fecha,
+  .consulta-card__eje,
+  .consulta-card__rango,
+  .consulta-card__aportes {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #555;
+  }
+
+  .consulta-card__eje {
+    font-weight: 600;
+    color: var(--color-azul-oscuro);
+  }
+
+  .consulta-card__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 2px 0;
+  }
+
+  .consulta-card__rango,
+  .consulta-card__aportes {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .consulta-card__aportes {
+    color: var(--color-azul-oscuro);
+    font-weight: 600;
+  }
+</style>

@@ -1,0 +1,65 @@
+---
+interface Props {
+  mostrarArchivos: boolean;
+  mostrarEnlaces: boolean;
+  mostrarGaleria: boolean;
+  mostrarParticipacion: boolean;
+  mostrarComentarios: boolean;
+}
+
+const { mostrarArchivos, mostrarEnlaces, mostrarGaleria, mostrarParticipacion, mostrarComentarios } =
+  Astro.props;
+
+const links = [
+  { id: 'archivos', texto: 'Archivos', mostrar: mostrarArchivos, icono: 'fa-file-pdf' },
+  { id: 'enlaces', texto: 'Enlaces relevantes', mostrar: mostrarEnlaces, icono: 'fa-link' },
+  { id: 'galeria', texto: 'Galería', mostrar: mostrarGaleria, icono: 'fa-images' },
+  { id: 'participacion', texto: 'Participá', mostrar: mostrarParticipacion, icono: 'fa-comments' },
+  { id: 'comentarios', texto: 'Comentarios', mostrar: mostrarComentarios, icono: 'fa-comment-dots' },
+].filter((link) => link.mostrar);
+---
+
+{links.length > 0 && (
+  <nav class="quick-nav" aria-label="Navegación rápida de la consulta">
+    <div class="container quick-nav__inner">
+      {links.map((link) => (
+        <a href={`#${link.id}`}>
+          <i class={`fa-solid ${link.icono}`} aria-hidden="true"></i>
+          {link.texto}
+        </a>
+      ))}
+    </div>
+  </nav>
+)}
+
+<style>
+  .quick-nav {
+    background: var(--color-blanco);
+    border-bottom: 1px solid #E7E9EC;
+    position: sticky;
+    top: 64px;
+    z-index: 30;
+  }
+
+  .quick-nav__inner {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .quick-nav__inner a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-azul-oscuro);
+    white-space: nowrap;
+  }
+
+  .quick-nav__inner a:hover {
+    color: var(--color-azul-oscuro);
+  }
+</style>

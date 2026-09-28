@@ -1,0 +1,41 @@
+{
+  "slug": "control-anegamientos-plaza-malvinas",
+  "titulo": "Obras de Control de Anegamientos — Plaza Malvinas Argentinas",
+  "estado": "finalizada",
+  "modalidad": "Presencial",
+  "fechaTexto": "Lunes 4 de mayo de 2026 - Presencial",
+  "fechaInicioParticipacion": "2026-05-04",
+  "fechaCierreParticipacion": "2026-05-25",
+  "ejeGestion": "Obras Hidráulicas y Pluviales",
+  "dependenciaRequirente": "Dirección Provincial Hidráulica / Dirección de Hidráulica Municipal",
+  "expediente": "CONSULTA PÚBLICA – CONTROL DE ANEGAMIENTOS PLAZA MALVINAS ARGENTINAS – DIRECCIÓN PROVINCIAL HIDRÁULICA / DIRECCIÓN DE HIDRÁULICA MUNICIPAL",
+  "etiquetas": ["Plaza Malvinas Argentinas", "Desagües Pluviales"],
+  "descripcionParrafos": [
+    "Se sometió a consulta pública el proyecto de obras de control de anegamientos en el entorno de la Plaza Malvinas Argentinas, que contempla la ampliación de la capacidad de conducción pluvial y la readecuación de bocas de tormenta en el sector.",
+    "La obra busca reducir los anegamientos recurrentes que afectan a la plaza y a las cuadras linderas durante eventos de lluvia intensa, mejorando la escorrentía superficial sin alterar la fisonomía general del espacio verde.",
+    "Durante el plazo de participación se habilitaron canales presenciales para que los vecinos del entorno pudieran acercar sus opiniones sobre el proyecto antes del inicio de las obras."
+  ],
+  "archivosDescargables": [
+    { "nombre": "Memoria Descriptiva.pdf", "peso": "2.2 MB", "url": "#" },
+    { "nombre": "Planos Generales.pdf", "peso": "6.3 MB", "url": "#" }
+  ],
+  "disposicionApertura": { "nombre": "Disposición de Apertura N° 22-2026.pdf", "peso": "301 KB", "url": "#" },
+  "disposicionCierre": { "nombre": "Disposición de Cierre N° 29-2026.pdf", "peso": "294 KB", "url": "#" },
+  "enlacesRelevantes": [
+    { "nombre": "Plan Director de Desagües Pluviales", "url": "#" }
+  ],
+  "galeria": [
+    { "alt": "Imagen ilustrativa del entorno de la Plaza Malvinas Argentinas — placeholder de maqueta" },
+    { "alt": "Imagen ilustrativa del trazado de conducción pluvial propuesto — placeholder de maqueta" },
+    { "alt": "Imagen ilustrativa de bocas de tormenta a readecuar — placeholder de maqueta" }
+  ],
+  "cantidadPresentaciones": 0,
+  "informeFinal": {
+    "antecedentes": "El proyecto responde a reclamos históricos por anegamientos recurrentes en el entorno de la Plaza Malvinas Argentinas durante eventos de lluvia intensa, identificados en relevamientos técnicos de la Dirección de Hidráulica Municipal.",
+    "desarrolloConsulta": "La consulta pública estuvo abierta entre el 4 y el 25 de mayo de 2026. Durante ese plazo no se recibieron presentaciones a través de los canales habilitados para esta instancia participativa.",
+    "sistematizacion": [],
+    "analisisTecnico": [],
+    "consideraciones": "Al no haberse recibido presentaciones durante el plazo de la consulta pública, el proyecto de obras de control de anegamientos continúa sin modificaciones derivadas de esta instancia participativa."
+  },
+  "comentariosMock": []
+}

@@ -1,0 +1,199 @@
+---
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+---
+
+<section id="participacion" class="participation-form" aria-label="Formulario de participación">
+  <h2>Participá de esta consulta</h2>
+  <p class="participation-form__nota">
+    <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+    Este formulario es parte de una maqueta de demostración: los datos no se envían ni se almacenan en
+    ningún servidor.
+  </p>
+
+  <form id="participation-form" data-slug={slug} novalidate>
+    <div class="participation-form__field">
+      <label for="pf-nombre">Nombre y Apellido</label>
+      <input type="text" id="pf-nombre" name="nombre" required />
+    </div>
+
+    <div class="participation-form__field">
+      <label for="pf-email">Email</label>
+      <input type="email" id="pf-email" name="email" required aria-describedby="pf-email-hint" />
+      <p class="participation-form__hint" id="pf-email-hint">
+        Tu email no se publica: el Municipio lo usa únicamente para contactarte si es necesario sobre tu
+        aporte.
+      </p>
+    </div>
+
+    <div class="participation-form__field">
+      <label for="pf-comentario">Comentario / Observación</label>
+      <textarea
+        id="pf-comentario"
+        name="comentario"
+        rows="5"
+        maxlength="1000"
+        required
+        aria-describedby="pf-contador"></textarea>
+      <p class="participation-form__counter" id="pf-contador">0/1000</p>
+    </div>
+
+    <div class="participation-form__field participation-form__field--checkbox">
+      <label>
+        <input type="checkbox" id="pf-privacidad" name="privacidad" required />
+        Acepto que mi aporte sea tratado según la <a href="#">política de privacidad</a>
+      </label>
+    </div>
+
+    <button type="submit" class="btn btn-sobre-blanco">Enviar aporte</button>
+
+    <p id="pf-confirmacion" class="participation-form__confirmacion" role="status" hidden>
+      ¡Gracias! Tu aporte fue recibido y quedará pendiente de revisión antes de publicarse.
+    </p>
+  </form>
+</section>
+
+<style>
+  .participation-form {
+    background: var(--color-blanco);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    padding: 28px;
+    margin: 40px 0;
+  }
+
+  .participation-form__nota {
+    background: var(--color-fondo-claro);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    color: #555;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .participation-form__field {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .participation-form__field label {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .participation-form__field input[type='text'],
+  .participation-form__field input[type='email'],
+  .participation-form__field textarea {
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #D9DCE1;
+    font-family: var(--font-principal);
+    font-size: 0.92rem;
+    resize: vertical;
+  }
+
+  .participation-form__field--checkbox label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-weight: 500;
+    font-size: 0.88rem;
+  }
+
+  .participation-form__field--checkbox a {
+    color: var(--color-azul-oscuro);
+    text-decoration: underline;
+  }
+
+  .participation-form__hint {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #6B6B6B;
+  }
+
+  .participation-form__counter {
+    margin: 0;
+    font-size: 0.78rem;
+    color: #6B6B6B;
+    text-align: right;
+  }
+
+  .participation-form__confirmacion {
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    background: #E7F9EE;
+    color: #1B7A3D;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+</style>
+
+<script>
+  (() => {
+    const form = document.getElementById('participation-form') as HTMLFormElement | null;
+    if (!form) return;
+
+    const slug = form.dataset.slug || '';
+    const confirmacion = document.getElementById('pf-confirmacion');
+
+    const comentarioTextarea = document.getElementById('pf-comentario') as HTMLTextAreaElement | null;
+    const contador = document.getElementById('pf-contador');
+    const maxLength = comentarioTextarea?.maxLength || 1000;
+
+    const actualizarContador = () => {
+      if (!comentarioTextarea || !contador) return;
+      contador.textContent = `${comentarioTextarea.value.length}/${maxLength}`;
+    };
+
+    comentarioTextarea?.addEventListener('input', actualizarContador);
+    actualizarContador();
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const nombre = (form.elements.namedItem('nombre') as HTMLInputElement).value.trim();
+      const comentarioTexto = (form.elements.namedItem('comentario') as HTMLTextAreaElement).value.trim();
+
+      const partesNombre = nombre.split(' ').filter(Boolean);
+      const autorMostrado =
+        partesNombre.length > 1
+          ? `${partesNombre[0]} ${partesNombre[partesNombre.length - 1].charAt(0)}.`
+          : nombre;
+
+      const nuevoComentario = {
+        autor: autorMostrado,
+        fecha: new Date().toISOString().slice(0, 10),
+        texto: comentarioTexto,
+        estadoModeracion: 'pendiente',
+      };
+
+      const storageKey = `comentarios-pendientes-${slug}`;
+      const existentes = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      existentes.push(nuevoComentario);
+      localStorage.setItem(storageKey, JSON.stringify(existentes));
+
+      form.reset();
+      actualizarContador();
+      if (confirmacion) confirmacion.hidden = false;
+
+      window.dispatchEvent(
+        new CustomEvent('nuevo-comentario', {
+          detail: { slug, comentario: nuevoComentario },
+        }),
+      );
+    });
+  })();
+</script>

@@ -1,0 +1,203 @@
+---
+const ejes = [
+  { nombre: 'Espacio Público y Paseos', variable: '--color-eje-espacio-publico' },
+  { nombre: 'Obras Hidráulicas y Pluviales', variable: '--color-eje-hidraulica' },
+  { nombre: 'Movilidad y Accesibilidad', variable: '--color-eje-movilidad' },
+  { nombre: 'Arbolado y Ambiente', variable: '--color-eje-arbolado' },
+  { nombre: 'Patrimonio y Puesta en Valor', variable: '--color-eje-patrimonio' },
+];
+
+const estados = [
+  { valor: 'todas', texto: 'Todas' },
+  { valor: 'programada', texto: 'Participación programada' },
+  { valor: 'abierta', texto: 'Participación abierta' },
+  { valor: 'finalizada', texto: 'Instancia finalizada' },
+];
+---
+
+<aside class="filters-sidebar" aria-label="Filtros de consultas públicas">
+  <button
+    type="button"
+    class="filters-sidebar__toggle"
+    id="filters-sidebar-toggle"
+    aria-expanded="false"
+    aria-controls="filters-sidebar-content"
+  >
+    <i class="fa-solid fa-filter" aria-hidden="true"></i>
+    <span id="filters-sidebar-toggle-label">Filtrar</span>
+    <i class="fa-solid fa-chevron-down filters-sidebar__toggle-icon" aria-hidden="true"></i>
+  </button>
+
+  <div class="filters-sidebar__content" id="filters-sidebar-content" hidden>
+    <div class="filters-sidebar__search">
+      <label for="buscador-consultas">
+        <i class="fa-solid fa-filter" aria-hidden="true"></i>
+        Buscar
+      </label>
+      <input
+        type="search"
+        id="buscador-consultas"
+        placeholder="Buscar por título o descripción"
+      />
+    </div>
+
+    <fieldset class="filters-sidebar__group">
+      <legend>Estado</legend>
+      {estados.map((estado, index) => (
+        <label class="filters-sidebar__option">
+          <input
+            type="radio"
+            name="filtro-estado"
+            value={estado.valor}
+            checked={index === 0}
+          />
+          {estado.texto}
+        </label>
+      ))}
+    </fieldset>
+
+    <fieldset class="filters-sidebar__group">
+      <legend>Eje de gestión</legend>
+      {ejes.map((eje) => (
+        <label class="filters-sidebar__option">
+          <input type="checkbox" name="filtro-eje" value={eje.nombre} />
+          <span class="chip-dot" style={`background: var(${eje.variable})`}></span>
+          {eje.nombre}
+        </label>
+      ))}
+    </fieldset>
+  </div>
+</aside>
+
+<style>
+  .filters-sidebar {
+    background: var(--color-blanco);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .filters-sidebar__search label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+  }
+
+  .filters-sidebar__search input {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: var(--radius-pill);
+    border: 1px solid #D9DCE1;
+    font-family: var(--font-principal);
+    font-size: 0.9rem;
+  }
+
+  .filters-sidebar__group {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filters-sidebar__group legend {
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0 0 6px;
+  }
+
+  .filters-sidebar__option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    cursor: pointer;
+  }
+
+  .filters-sidebar__toggle {
+    display: none;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+    background: var(--color-fondo-claro);
+    border: 1px solid #D9DCE1;
+    border-radius: var(--radius-pill);
+    padding: 12px 18px;
+    font-family: var(--font-principal);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--color-texto-oscuro);
+    cursor: pointer;
+  }
+
+  .filters-sidebar__toggle-icon {
+    margin-left: auto;
+    transition: transform 0.2s ease;
+  }
+
+  .filters-sidebar__toggle[aria-expanded="true"] .filters-sidebar__toggle-icon {
+    transform: rotate(180deg);
+  }
+
+  .filters-sidebar__content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  @media (max-width: 960px) {
+    .filters-sidebar__toggle {
+      display: flex;
+    }
+
+    .filters-sidebar__content[hidden] {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const toggleBtn = document.getElementById('filters-sidebar-toggle');
+    const toggleLabel = document.getElementById('filters-sidebar-toggle-label');
+    const content = document.getElementById('filters-sidebar-content');
+    if (!toggleBtn || !content) return;
+
+    toggleBtn.addEventListener('click', () => {
+      const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      toggleBtn.setAttribute('aria-expanded', String(!expanded));
+      content.hidden = expanded;
+    });
+
+    const radiosEstado = document.querySelectorAll<HTMLInputElement>('input[name="filtro-estado"]');
+    const checksEje = document.querySelectorAll<HTMLInputElement>('input[name="filtro-eje"]');
+
+    function actualizarEtiqueta() {
+      let activos = 0;
+
+      radiosEstado.forEach((radio) => {
+        if (radio.checked && radio.value !== 'todas') activos += 1;
+      });
+
+      checksEje.forEach((chk) => {
+        if (chk.checked) activos += 1;
+      });
+
+      if (toggleLabel) {
+        toggleLabel.textContent = activos > 0 ? `Filtrar (${activos})` : 'Filtrar';
+      }
+    }
+
+    radiosEstado.forEach((radio) => radio.addEventListener('change', actualizarEtiqueta));
+    checksEje.forEach((chk) => chk.addEventListener('change', actualizarEtiqueta));
+
+    actualizarEtiqueta();
+  })();
+</script>

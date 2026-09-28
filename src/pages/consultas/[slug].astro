@@ -1,0 +1,264 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import EstadoBadge from '../../components/EstadoBadge.astro';
+import QuickNav from '../../components/QuickNav.astro';
+import MetadataSidebar from '../../components/MetadataSidebar.astro';
+import Gallery from '../../components/Gallery.astro';
+import ParticipationForm from '../../components/ParticipationForm.astro';
+import CommentsSection from '../../components/CommentsSection.astro';
+import BackToTop from '../../components/BackToTop.astro';
+
+export async function getStaticPaths() {
+  const consultasModules = import.meta.glob('../../data/consultas/*.json', { eager: true }) as Record<
+    string,
+    { default: any }
+  >;
+
+  return Object.values(consultasModules).map((mod) => ({
+    params: { slug: mod.default.slug },
+    props: { consulta: mod.default },
+  }));
+}
+
+const { consulta } = Astro.props as { consulta: any };
+
+const mostrarArchivos = consulta.archivosDescargables.length > 0 || !!consulta.disposicionApertura || !!consulta.disposicionCierre;
+const mostrarEnlaces = consulta.enlacesRelevantes.length > 0;
+const mostrarGaleria = consulta.galeria.length > 0;
+const mostrarParticipacion = consulta.estado === 'abierta';
+const mostrarComentarios = consulta.estado === 'abierta' || consulta.estado === 'finalizada';
+---
+
+<BaseLayout title={consulta.titulo}>
+  <Header />
+
+  <main id="contenido-principal">
+  <section class="hero-gradiente hero-gradiente--chico">
+    <div class="container">
+      <p class="breadcrumb">Consultas Públicas &gt; {consulta.ejeGestion}</p>
+      <h1>{consulta.titulo}</h1>
+      <p class="hero-bajada" style="margin: 0 0 16px; text-align: left;">{consulta.fechaTexto}</p>
+      <EstadoBadge estado={consulta.estado} />
+    </div>
+  </section>
+
+  <QuickNav
+    mostrarArchivos={mostrarArchivos}
+    mostrarEnlaces={mostrarEnlaces}
+    mostrarGaleria={mostrarGaleria}
+    mostrarParticipacion={mostrarParticipacion}
+    mostrarComentarios={mostrarComentarios}
+  />
+
+  <section class="detalle">
+    <div class="container grid-detalle">
+      <MetadataSidebar
+        estado={consulta.estado}
+        dependenciaRequirente={consulta.dependenciaRequirente}
+        expediente={consulta.expediente}
+        fechaInicioParticipacion={consulta.fechaInicioParticipacion}
+        fechaCierreParticipacion={consulta.fechaCierreParticipacion}
+        ejeGestion={consulta.ejeGestion}
+        etiquetas={consulta.etiquetas}
+      />
+
+      <div class="detalle__principal">
+        {consulta.estado !== 'finalizada' ? (
+          consulta.descripcionParrafos.map((parrafo: string) => <p>{parrafo}</p>)
+        ) : (
+          <>
+            <p>{consulta.descripcionParrafos[0]}</p>
+
+            <div class="informe-final">
+              <h2>Informe Final de la Consulta Pública</h2>
+
+              <h3>Antecedentes</h3>
+              <p>{consulta.informeFinal.antecedentes}</p>
+
+              <h3>Desarrollo de la consulta</h3>
+              <p>{consulta.informeFinal.desarrolloConsulta}</p>
+
+              <h3>Sistematización de las presentaciones</h3>
+              {consulta.informeFinal.sistematizacion.length > 0 ? (
+                <ul class="informe-final__lista">
+                  {consulta.informeFinal.sistematizacion.map((item: { eje: string; resumen: string }) => (
+                    <li>
+                      <strong>{item.eje}:</strong> {item.resumen}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p>No se recibieron presentaciones para sistematizar durante el plazo de esta consulta.</p>
+              )}
+
+              <h3>Análisis técnico</h3>
+              {consulta.informeFinal.analisisTecnico.length > 0 ? (
+                <ul class="informe-final__lista">
+                  {consulta.informeFinal.analisisTecnico.map((item: { eje: string; respuesta: string }) => (
+                    <li>
+                      <strong>{item.eje}:</strong> {item.respuesta}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p>No corresponde análisis técnico adicional al no haberse recibido presentaciones.</p>
+              )}
+
+              <h3>Consideraciones sobre el proyecto</h3>
+              <p>{consulta.informeFinal.consideraciones}</p>
+            </div>
+          </>
+        )}
+
+        {mostrarArchivos && (
+          <section id="archivos" class="bloque-seccion">
+            <h2>Archivos para descargar</h2>
+            <ul class="lista-archivos">
+              {consulta.archivosDescargables.map((archivo: { nombre: string; peso: string; url: string }) => (
+                <li>
+                  <a href={archivo.url}>
+                    <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
+                    <span>{archivo.nombre}</span>
+                    <span class="lista-archivos__peso">{archivo.peso}</span>
+                  </a>
+                </li>
+              ))}
+              {consulta.disposicionApertura && (
+                <li>
+                  <a href={consulta.disposicionApertura.url}>
+                    <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
+                    <span>{consulta.disposicionApertura.nombre}</span>
+                    <span class="lista-archivos__peso">{consulta.disposicionApertura.peso}</span>
+                  </a>
+                </li>
+              )}
+              {consulta.disposicionCierre && (
+                <li>
+                  <a href={consulta.disposicionCierre.url}>
+                    <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
+                    <span>{consulta.disposicionCierre.nombre}</span>
+                    <span class="lista-archivos__peso">{consulta.disposicionCierre.peso}</span>
+                  </a>
+                </li>
+              )}
+            </ul>
+          </section>
+        )}
+
+        {mostrarEnlaces && (
+          <section id="enlaces" class="bloque-seccion">
+            <h2>Enlaces relevantes</h2>
+            <ul class="lista-enlaces">
+              {consulta.enlacesRelevantes.map((enlace: { nombre: string; url: string }) => (
+                <li>
+                  <a href={enlace.url}>
+                    <i class="fa-solid fa-link" aria-hidden="true"></i>
+                    {enlace.nombre}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {mostrarGaleria && <Gallery galeria={consulta.galeria} />}
+
+        {mostrarParticipacion && <ParticipationForm slug={consulta.slug} />}
+
+        {mostrarComentarios && (
+          <CommentsSection slug={consulta.slug} comentariosMock={consulta.comentariosMock} />
+        )}
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <Footer />
+  <BackToTop />
+</BaseLayout>
+
+<style>
+  .detalle {
+    padding: 40px 0 64px;
+  }
+
+  .detalle__principal h2 {
+    margin-top: 40px;
+  }
+
+  .detalle__principal h3 {
+    margin-top: 24px;
+    font-size: 1.05rem;
+    color: var(--color-azul-oscuro);
+  }
+
+  .informe-final {
+    background: var(--color-blanco);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    padding: 24px 28px;
+    margin-top: 24px;
+  }
+
+  .informe-final h2 {
+    margin-top: 0;
+  }
+
+  .informe-final__lista {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0 0 1em;
+  }
+
+  .informe-final__lista li {
+    background: var(--color-fondo-claro);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.92rem;
+  }
+
+  .bloque-seccion {
+    margin-top: 40px;
+  }
+
+  .lista-archivos,
+  .lista-enlaces {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .lista-archivos a,
+  .lista-enlaces a {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: var(--color-blanco);
+    border-radius: 12px;
+    padding: 14px 18px;
+    box-shadow: var(--shadow-card);
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+
+  .lista-archivos a i,
+  .lista-enlaces a i {
+    color: var(--color-azul-oscuro);
+  }
+
+  .lista-archivos a:hover,
+  .lista-enlaces a:hover {
+    color: var(--color-azul-oscuro);
+  }
+
+  .lista-archivos__peso {
+    margin-left: auto;
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: #6B6B6B;
+  }
+</style>

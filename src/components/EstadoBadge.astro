@@ -1,0 +1,24 @@
+---
+interface Props {
+  estado: 'programada' | 'abierta' | 'finalizada';
+}
+
+const { estado } = Astro.props;
+
+const textos: Record<string, string> = {
+  programada: 'Participación programada',
+  abierta: 'Participación abierta',
+  finalizada: 'Instancia participativa finalizada',
+};
+
+const iconos: Record<string, string> = {
+  programada: 'fa-calendar',
+  abierta: 'fa-comments',
+  finalizada: 'fa-flag-checkered',
+};
+---
+
+<span class={`badge badge-${estado}`}>
+  <i class={`fa-solid ${iconos[estado]}`}></i>
+  {textos[estado]}
+</span>

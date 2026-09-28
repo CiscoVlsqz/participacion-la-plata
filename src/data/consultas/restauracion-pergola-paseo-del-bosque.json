@@ -1,0 +1,54 @@
+{
+  "slug": "restauracion-pergola-paseo-del-bosque",
+  "titulo": "Restauración de la Pérgola del Paseo del Bosque",
+  "estado": "finalizada",
+  "modalidad": "Presencial",
+  "fechaTexto": "Lunes 6 de abril de 2026 - Presencial",
+  "fechaInicioParticipacion": "2026-04-06",
+  "fechaCierreParticipacion": "2026-04-27",
+  "ejeGestion": "Patrimonio y Puesta en Valor",
+  "dependenciaRequirente": "Dirección General de Patrimonio y Paisaje Urbano",
+  "expediente": "CONSULTA PÚBLICA – RESTAURACIÓN PÉRGOLA PASEO DEL BOSQUE – DIRECCIÓN GENERAL DE PATRIMONIO Y PAISAJE URBANO",
+  "etiquetas": ["Paseo del Bosque", "Patrimonio Histórico"],
+  "descripcionParrafos": [
+    "Se sometió a consulta pública el proyecto de restauración de la pérgola histórica del Paseo del Bosque, que contempla la recuperación de su estructura original, el tratamiento de la mampostería deteriorada y la puesta en valor del entorno inmediato.",
+    "La intervención busca preservar uno de los elementos patrimoniales más reconocidos del Paseo del Bosque, respetando los materiales y técnicas constructivas originales en la medida de lo posible, e incorporando mejoras de accesibilidad en su acceso.",
+    "Durante el plazo de participación, los vecinos y visitantes habituales del paseo pudieron acercar sus opiniones sobre el proyecto de restauración a través de los canales presenciales habilitados por el Municipio."
+  ],
+  "archivosDescargables": [
+    { "nombre": "Memoria Descriptiva.pdf", "peso": "2.0 MB", "url": "#" },
+    { "nombre": "Planos Generales.pdf", "peso": "4.7 MB", "url": "#" },
+    { "nombre": "Presentación Institucional.pdf", "peso": "1.7 MB", "url": "#" }
+  ],
+  "disposicionApertura": { "nombre": "Disposición de Apertura N° 09-2026.pdf", "peso": "289 KB", "url": "#" },
+  "disposicionCierre": { "nombre": "Disposición de Cierre N° 15-2026.pdf", "peso": "276 KB", "url": "#" },
+  "enlacesRelevantes": [
+    { "nombre": "Catálogo de Bienes Patrimoniales de La Plata", "url": "#" }
+  ],
+  "galeria": [
+    { "alt": "Imagen ilustrativa de la pérgola histórica actual — placeholder de maqueta" },
+    { "alt": "Imagen ilustrativa del detalle de mampostería a restaurar — placeholder de maqueta" },
+    { "alt": "Imagen ilustrativa del entorno del Paseo del Bosque — placeholder de maqueta" },
+    { "alt": "Imagen ilustrativa del acceso propuesto con mejoras de accesibilidad — placeholder de maqueta" }
+  ],
+  "cantidadPresentaciones": 9,
+  "informeFinal": {
+    "antecedentes": "El proyecto surge de un relevamiento patrimonial que constató el avanzado deterioro de la mampostería y la estructura original de la pérgola, sumado a reclamos de accesibilidad en su acceso principal.",
+    "desarrolloConsulta": "La consulta pública estuvo abierta entre el 6 y el 27 de abril de 2026, plazo durante el cual se recibieron 9 presentaciones centradas principalmente en los materiales de restauración y en la accesibilidad del sector.",
+    "sistematizacion": [
+      { "eje": "Materiales de restauración", "resumen": "Varias presentaciones solicitaron priorizar materiales y técnicas originales por sobre soluciones más económicas." },
+      { "eje": "Accesibilidad del acceso", "resumen": "Se recibieron pedidos concretos de sumar una rampa en el acceso principal de la pérgola." }
+    ],
+    "analisisTecnico": [
+      { "eje": "Materiales de restauración", "respuesta": "El proyecto mantiene el criterio de utilizar materiales y técnicas compatibles con la construcción original, conforme a los estándares patrimoniales vigentes." },
+      { "eje": "Accesibilidad del acceso", "respuesta": "Se incorpora al proyecto una rampa de acceso con pendiente normada, integrada al diseño original del entorno." }
+    ],
+    "consideraciones": "A partir de las presentaciones recibidas, el proyecto incorpora una rampa de acceso accesible y ratifica el uso de materiales y técnicas compatibles con la estructura patrimonial original de la pérgola."
+  },
+  "comentariosMock": [
+    { "autor": "Ana M.", "fecha": "2026-04-09", "texto": "Qué bueno que se restaure la pérgola, es un ícono del paseo y merece cuidado.", "estadoModeracion": "publicado" },
+    { "autor": "Federico L.", "fecha": "2026-04-13", "texto": "Ojalá se use el mismo tipo de piedra original, sería una pena que quede distinta.", "estadoModeracion": "publicado" },
+    { "autor": "Rosana B.", "fecha": "2026-04-17", "texto": "Sería muy útil sumar una rampa, hoy es difícil acceder con silla de ruedas o carrito.", "estadoModeracion": "publicado" },
+    { "autor": "Julián C.", "fecha": "2026-04-22", "texto": "Excelente iniciativa, ojalá se mantenga el mantenimiento después de la restauración.", "estadoModeracion": "publicado" }
+  ]
+}

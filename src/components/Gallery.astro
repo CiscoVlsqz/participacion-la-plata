@@ -1,0 +1,116 @@
+---
+interface Props {
+  galeria: { alt: string }[];
+}
+
+const { galeria } = Astro.props;
+---
+
+<section id="galeria" class="gallery" aria-label="Galería de imágenes del proyecto">
+  <h2>Galería</h2>
+  <div class="gallery__wrapper">
+    <button class="gallery__arrow gallery__arrow--prev" type="button" aria-label="Imagen anterior">
+      <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+    </button>
+    <div class="gallery__track" tabindex="0">
+      {galeria.map((item) => (
+        <div class="gallery__item">
+          <div class="img-placeholder">
+            <i class="fa-solid fa-image" aria-hidden="true"></i>
+            <span>Imagen ilustrativa</span>
+          </div>
+          <p class="gallery__alt-text" aria-hidden="true">{item.alt}</p>
+          <span class="visually-hidden">{item.alt}</span>
+        </div>
+      ))}
+    </div>
+    <button class="gallery__arrow gallery__arrow--next" type="button" aria-label="Imagen siguiente">
+      <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+    </button>
+  </div>
+</section>
+
+<style>
+  .gallery {
+    margin: 40px 0;
+  }
+
+  .gallery__wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .gallery__track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 8px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .gallery__item {
+    flex: 0 0 260px;
+    scroll-snap-align: start;
+  }
+
+  .gallery__alt-text {
+    font-size: 0.78rem;
+    color: #666;
+    margin: 8px 0 0;
+    text-align: center;
+  }
+
+  .gallery__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: var(--color-azul-oscuro);
+    color: var(--color-blanco);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    box-shadow: var(--shadow-card);
+  }
+
+  .gallery__arrow--prev {
+    left: -8px;
+  }
+
+  .gallery__arrow--next {
+    right: -8px;
+  }
+
+  @media (max-width: 640px) {
+    .gallery__arrow {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const track = document.querySelector<HTMLElement>('.gallery__track');
+    const prev = document.querySelector<HTMLButtonElement>('.gallery__arrow--prev');
+    const next = document.querySelector<HTMLButtonElement>('.gallery__arrow--next');
+    if (!track || !prev || !next) return;
+
+    const desplazamiento = 276;
+
+    prev.addEventListener('click', () => {
+      track.scrollBy({ left: -desplazamiento, behavior: 'smooth' });
+    });
+
+    next.addEventListener('click', () => {
+      track.scrollBy({ left: desplazamiento, behavior: 'smooth' });
+    });
+  })();
+</script>

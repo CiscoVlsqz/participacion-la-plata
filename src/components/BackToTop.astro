@@ -1,0 +1,28 @@
+---
+---
+
+<button id="back-to-top" class="back-to-top" aria-label="Volver arriba" type="button">
+  <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>
+</button>
+
+<script>
+  (() => {
+    const btn = document.getElementById('back-to-top');
+    if (!btn) return;
+
+    const onScroll = () => {
+      if (window.scrollY > 400) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+</script>

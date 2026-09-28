@@ -1,0 +1,130 @@
+---
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <div class="wordmark-footer">
+        <i class="fa-solid fa-landmark"></i>
+        <span>Participación <strong>La Plata</strong></span>
+      </div>
+      <p>Municipalidad de La Plata</p>
+    </div>
+
+    <div class="site-footer__col">
+      <h4>Secciones</h4>
+      <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/">Consultas Públicas</a></li>
+      </ul>
+    </div>
+
+    <div class="site-footer__col">
+      <h4>Legales</h4>
+      <ul>
+        <li><a href="#">Términos y condiciones</a></li>
+        <li><a href="#">Política de privacidad</a></li>
+      </ul>
+    </div>
+
+    <div class="site-footer__col">
+      <h4>Seguinos</h4>
+      <div class="site-footer__social">
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container site-footer__disclaimer">
+    <p>Este sitio es un prototipo de demostración y no representa un canal oficial de participación.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-azul-oscuro);
+    color: var(--color-blanco);
+    margin-top: 64px;
+    padding-top: 48px;
+  }
+
+  .site-footer__grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 32px;
+    padding-bottom: 32px;
+  }
+
+  @media (max-width: 960px) {
+    .site-footer__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .site-footer__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .wordmark-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+
+  .wordmark-footer i {
+    font-size: 1.3rem;
+  }
+
+  .site-footer__brand p {
+    opacity: 0.85;
+    margin: 0;
+  }
+
+  .site-footer h4 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
+    opacity: 0.9;
+  }
+
+  .site-footer__col ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .site-footer__col a {
+    opacity: 0.9;
+  }
+
+  .site-footer__col a:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+
+  .site-footer__social {
+    display: flex;
+    gap: 14px;
+    font-size: 1.2rem;
+  }
+
+  .site-footer__disclaimer {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 16px 20px;
+  }
+
+  .site-footer__disclaimer p {
+    margin: 0;
+    font-size: 0.8rem;
+    opacity: 0.85;
+    text-align: center;
+  }
+</style>

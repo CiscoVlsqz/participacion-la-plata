@@ -1,0 +1,143 @@
+---
+const items = [
+  {
+    pregunta: '¿Cómo funciona una consulta pública?',
+    respuesta:
+      'Es una instancia participativa, no vinculante, mediante la cual el Municipio difunde un proyecto de obra o intervención en el espacio público y habilita un plazo para que los vecinos y vecinas puedan conocerlo y opinar antes de que avance a su etapa de ejecución.',
+  },
+  {
+    pregunta: '¿Qué asuntos pueden tratarse?',
+    respuesta:
+      'Pueden someterse a consulta proyectos de obras, intervenciones o planes vinculados al espacio público, como plazas, arbolado, movilidad, hidráulica o patrimonio, en etapa de anteproyecto o proyecto ejecutivo, antes de su implementación definitiva.',
+  },
+  {
+    pregunta: '¿Qué asuntos no pueden tratarse?',
+    respuesta:
+      'No se someten a consulta pública cuestiones que involucren información presupuestaria, cómputos y costos de obra, ni decisiones administrativas que excedan el alcance del proyecto de espacio público en cuestión.',
+  },
+  {
+    pregunta: '¿Cómo puedo participar?',
+    respuesta:
+      'Durante el plazo de participación de cada consulta se puede acceder a la documentación del proyecto y, cuando la instancia se encuentra en estado "abierta", enviar un aporte a través del formulario disponible en la página de detalle de esa consulta.',
+  },
+  {
+    pregunta: '¿Qué ocurre después de la consulta?',
+    respuesta:
+      'Una vez cerrado el plazo de participación, los aportes recibidos se sistematizan y se elabora un informe final que da respuesta técnica a los ejes planteados por la comunidad, el cual queda disponible públicamente en la página de cada consulta.',
+  },
+];
+---
+
+<section class="faq" aria-label="Preguntas frecuentes sobre consultas públicas">
+  <div class="container">
+    <h2>Preguntas frecuentes</h2>
+    <div class="faq__list">
+      {items.map((item, index) => (
+        <div class="faq__item">
+          <button
+            class="faq__question"
+            type="button"
+            aria-expanded="false"
+            aria-controls={`faq-answer-${index}`}
+            id={`faq-question-${index}`}
+          >
+            <span>{item.pregunta}</span>
+            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+          </button>
+          <div
+            class="faq__answer"
+            id={`faq-answer-${index}`}
+            role="region"
+            aria-labelledby={`faq-question-${index}`}
+            hidden
+          >
+            <p>{item.respuesta}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    background: #1B1F26;
+    color: var(--color-blanco);
+    padding: 56px 0;
+  }
+
+  .faq h2 {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .faq__list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .faq__item {
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .faq__question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 18px 20px;
+    background: transparent;
+    border: none;
+    color: var(--color-blanco);
+    font-family: var(--font-principal);
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .faq__question:focus-visible {
+    outline-offset: -3px;
+  }
+
+  .faq__question i {
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .faq__question[aria-expanded="true"] i {
+    transform: rotate(180deg);
+  }
+
+  .faq__answer {
+    padding: 0 20px 20px;
+    opacity: 0.9;
+  }
+
+  .faq__answer p {
+    margin: 0;
+  }
+</style>
+
+<script>
+  (() => {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.faq__question');
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        const answerId = btn.getAttribute('aria-controls');
+        const answer = answerId ? document.getElementById(answerId) : null;
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if (answer) {
+          answer.hidden = expanded;
+        }
+      });
+    });
+  })();
+</script>

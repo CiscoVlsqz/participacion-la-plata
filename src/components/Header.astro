@@ -1,0 +1,75 @@
+---
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" class="wordmark">
+      <i class="fa-solid fa-landmark"></i>
+      <span>Participación <strong>La Plata</strong></span>
+    </a>
+    <nav aria-label="Navegación principal">
+      <ul>
+        <li><a href="/">Inicio</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: var(--color-blanco);
+    border-bottom: 1px solid #E7E9EC;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .wordmark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    color: var(--color-azul-oscuro);
+  }
+
+  .wordmark i {
+    color: var(--color-azul-oscuro);
+    font-size: 1.3rem;
+  }
+
+  .wordmark strong {
+    color: var(--color-azul-oscuro);
+  }
+
+  nav ul {
+    display: flex;
+    gap: 24px;
+  }
+
+  nav a {
+    font-weight: 600;
+    color: var(--color-texto-oscuro);
+    padding: 6px 2px;
+  }
+
+  nav a:hover {
+    color: var(--color-azul-oscuro);
+  }
+
+  @media (max-width: 640px) {
+    .site-header__inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }
+</style>

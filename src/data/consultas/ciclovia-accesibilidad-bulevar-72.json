@@ -1,0 +1,36 @@
+{
+  "slug": "ciclovia-accesibilidad-bulevar-72",
+  "titulo": "Ciclovía y Mejoras de Accesibilidad en Bulevar 72",
+  "estado": "programada",
+  "modalidad": "Presencial",
+  "fechaTexto": "Martes 20 de octubre de 2026 - Presencial",
+  "fechaInicioParticipacion": "2026-10-20",
+  "fechaCierreParticipacion": "2026-11-10",
+  "ejeGestion": "Movilidad y Accesibilidad",
+  "dependenciaRequirente": "Dirección General de Movilidad Urbana",
+  "expediente": "CONSULTA PÚBLICA – CICLOVÍA Y ACCESIBILIDAD BULEVAR 72 – DIRECCIÓN GENERAL DE MOVILIDAD URBANA",
+  "etiquetas": ["Bulevar 72", "Movilidad Urbana"],
+  "descripcionParrafos": [
+    "La Municipalidad de La Plata pondrá a consulta el proyecto de incorporación de una ciclovía y mejoras de accesibilidad peatonal a lo largo del Bulevar 72, en el marco del plan de movilidad sustentable para el corredor.",
+    "La propuesta incluye la demarcación de un carril exclusivo para bicicletas, la renovación de rampas peatonales en las esquinas del corredor y la señalización correspondiente, buscando mejorar la seguridad vial de ciclistas y peatones.",
+    "La instancia de participación se realizará de forma presencial y estará orientada a recoger observaciones de frentistas, comerciantes y usuarios habituales del corredor antes del inicio de las obras."
+  ],
+  "archivosDescargables": [
+    { "nombre": "Memoria Descriptiva.pdf", "peso": "1.6 MB", "url": "#" },
+    { "nombre": "Planos Generales.pdf", "peso": "4.2 MB", "url": "#" },
+    { "nombre": "Presentación Institucional.pdf", "peso": "2.0 MB", "url": "#" }
+  ],
+  "disposicionApertura": null,
+  "disposicionCierre": null,
+  "enlacesRelevantes": [
+    { "nombre": "Plan de Movilidad Sustentable La Plata", "url": "#" }
+  ],
+  "galeria": [
+    { "alt": "Imagen ilustrativa del trazado propuesto de ciclovía — placeholder de maqueta" },
+    { "alt": "Imagen ilustrativa de rampa de accesibilidad peatonal — placeholder de maqueta" },
+    { "alt": "Imagen ilustrativa de la señalización vial propuesta — placeholder de maqueta" }
+  ],
+  "cantidadPresentaciones": 0,
+  "informeFinal": null,
+  "comentariosMock": []
+}

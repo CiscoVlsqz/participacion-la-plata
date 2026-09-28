@@ -1,0 +1,57 @@
+{
+  "slug": "puesta-en-valor-plaza-san-martin",
+  "titulo": "Puesta en Valor de la Plaza San Martín",
+  "estado": "finalizada",
+  "modalidad": "Presencial",
+  "fechaTexto": "Lunes 1 de junio de 2026 - Presencial",
+  "fechaInicioParticipacion": "2026-06-01",
+  "fechaCierreParticipacion": "2026-06-22",
+  "ejeGestion": "Patrimonio y Puesta en Valor",
+  "dependenciaRequirente": "Dirección General de Patrimonio y Paisaje Urbano",
+  "expediente": "CONSULTA PÚBLICA – PUESTA EN VALOR PLAZA SAN MARTÍN – DIRECCIÓN GENERAL DE PATRIMONIO Y PAISAJE URBANO",
+  "etiquetas": ["Casco Urbano", "Plaza San Martín", "Dirección de Espacios Verdes"],
+  "descripcionParrafos": [
+    "La Municipalidad de La Plata sometió a consulta pública el proyecto de puesta en valor de la Plaza San Martín, uno de los espacios verdes fundacionales del casco urbano platense. La propuesta contempla la restauración de senderos, bancos y luminarias históricas, la incorporación de nuevo mobiliario urbano accesible y la revalorización del arbolado existente.",
+    "El proyecto busca conciliar la conservación del carácter patrimonial de la plaza con las necesidades actuales de accesibilidad, esparcimiento y uso comunitario del espacio, atendiendo especialmente a la circulación peatonal y a la iluminación nocturna del sector.",
+    "Durante el plazo de participación, los vecinos y vecinas de la zona pudieron acercar sus opiniones, sugerencias y observaciones sobre los alcances del proyecto a través de los canales habilitados por el Municipio."
+  ],
+  "archivosDescargables": [
+    { "nombre": "Memoria Descriptiva.pdf", "peso": "2.4 MB", "url": "#" },
+    { "nombre": "Planos Generales.pdf", "peso": "5.1 MB", "url": "#" },
+    { "nombre": "Especificaciones Técnicas.pdf", "peso": "1.8 MB", "url": "#" }
+  ],
+  "disposicionApertura": { "nombre": "Disposición de Apertura N° 41-2026.pdf", "peso": "310 KB", "url": "#" },
+  "disposicionCierre": { "nombre": "Disposición de Cierre N° 52-2026.pdf", "peso": "298 KB", "url": "#" },
+  "enlacesRelevantes": [
+    { "nombre": "Ordenanza de Espacios Verdes Protegidos", "url": "#" },
+    { "nombre": "Plan Director de Paisaje Urbano", "url": "#" }
+  ],
+  "galeria": [
+    { "alt": "Imagen ilustrativa del sendero central de la Plaza San Martín — placeholder de maqueta" },
+    { "alt": "Imagen ilustrativa del sector de bancos históricos — placeholder de maqueta" },
+    { "alt": "Imagen ilustrativa de la propuesta de iluminación — placeholder de maqueta" },
+    { "alt": "Imagen ilustrativa del arbolado existente — placeholder de maqueta" }
+  ],
+  "cantidadPresentaciones": 14,
+  "informeFinal": {
+    "antecedentes": "El proyecto de puesta en valor surge de un relevamiento técnico que identificó deterioro en las sendas peatonales, el mobiliario urbano y el sistema de iluminación de la plaza, así como demandas históricas de accesibilidad por parte de vecinos y organizaciones del barrio.",
+    "desarrolloConsulta": "La consulta pública estuvo abierta entre el 1 y el 22 de junio de 2026, plazo durante el cual se recibieron 14 presentaciones a través de los canales presenciales y del formulario habilitado, con observaciones centradas en el arbolado, la accesibilidad y la iluminación del predio.",
+    "sistematizacion": [
+      { "eje": "Arbolado existente", "resumen": "Varias presentaciones solicitaron preservar los ejemplares de mayor porte y evitar extracciones no justificadas técnicamente." },
+      { "eje": "Accesibilidad", "resumen": "Se recibieron pedidos de ampliar el ancho de las sendas y sumar rampas en los accesos principales de la plaza." },
+      { "eje": "Iluminación", "resumen": "Vecinos plantearon reforzar la iluminación en el sector sur, identificado como más oscuro durante la noche." }
+    ],
+    "analisisTecnico": [
+      { "eje": "Arbolado existente", "respuesta": "El proyecto mantiene el criterio de preservación planteado y solo contempla extracciones por riesgo fitosanitario certificado." },
+      { "eje": "Accesibilidad", "respuesta": "Se incorpora al proyecto la ampliación de sendas en los tres accesos principales y rampas con pendiente normada." },
+      { "eje": "Iluminación", "respuesta": "Se suma al proyecto original el refuerzo lumínico del sector sur mediante columnas adicionales de tecnología LED." }
+    ],
+    "consideraciones": "A partir de lo recogido durante la instancia participativa, el proyecto original se ajusta incorporando la ampliación de sendas, rampas de acceso y el refuerzo de iluminación en el sector sur, manteniendo inalterados los lineamientos patrimoniales previstos originalmente."
+  },
+  "comentariosMock": [
+    { "autor": "Marta G.", "fecha": "2026-06-04", "texto": "Me parece muy positivo que se recupere la plaza, solo pido que se cuiden los árboles más antiguos.", "estadoModeracion": "publicado" },
+    { "autor": "Ricardo P.", "fecha": "2026-06-09", "texto": "Sería importante mejorar la iluminación del lado sur, hoy queda muy oscuro de noche.", "estadoModeracion": "publicado" },
+    { "autor": "Lucía F.", "fecha": "2026-06-14", "texto": "Las sendas actuales son muy angostas para personas con movilidad reducida, ojalá se amplíen.", "estadoModeracion": "publicado" },
+    { "autor": "Diego S.", "fecha": "2026-06-18", "texto": "Buena iniciativa, espero que los bancos históricos se mantengan como parte de la identidad de la plaza.", "estadoModeracion": "publicado" }
+  ]
+}

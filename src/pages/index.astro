@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import StatsBlock from '../components/StatsBlock.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import FiltersSidebar from '../components/FiltersSidebar.astro';
+import ConsultaCard from '../components/ConsultaCard.astro';
+import BackToTop from '../components/BackToTop.astro';
+
+const consultasModules = import.meta.glob('../data/consultas/*.json', { eager: true }) as Record<
+  string,
+  { default: any }
+>;
+
+const consultas = Object.values(consultasModules)
+  .map((mod) => mod.default)
+  .sort((a, b) => (a.fechaInicioParticipacion < b.fechaInicioParticipacion ? 1 : -1));
+
+const totalConsultas = consultas.length;
+const totalAportes = consultas.reduce((sum, c) => sum + c.cantidadPresentaciones, 0);
+const totalAbiertas = consultas.filter((c) => c.estado === 'abierta').length;
+---
+
+<BaseLayout title="Consultas Públicas">
+  <Header />
+
+  <main id="contenido-principal">
+    <section class="hero-gradiente">
+      <div class="container">
+        <div class="hero-icono"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i></div>
+        <h1>Consultas Públicas</h1>
+        <p class="hero-bajada">
+          Un espacio para conocer los proyectos de obras y espacio público que la Municipalidad de La Plata
+          pone a consideración de la comunidad, y para acercar tu opinión antes de que avancen a su etapa de
+          ejecución.
+        </p>
+      </div>
+    </section>
+
+    <StatsBlock totalConsultas={totalConsultas} totalAportes={totalAportes} totalAbiertas={totalAbiertas} />
+
+    <FaqAccordion />
+
+    <section class="listado" aria-label="Listado de consultas públicas">
+      <div class="container grid-2col">
+        <FiltersSidebar />
+
+        <div>
+          <div id="cards-grid" class="cards-grid">
+            {consultas.map((consulta) => (
+              <ConsultaCard consulta={consulta} />
+            ))}
+          </div>
+          <p id="sin-resultados" class="sin-resultados" hidden>
+            No hay consultas para los filtros seleccionados.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <BackToTop />
+</BaseLayout>
+
+<style>
+  .listado {
+    padding: 48px 0 64px;
+  }
+
+  .sin-resultados {
+    text-align: center;
+    padding: 40px 20px;
+    color: #555;
+    font-weight: 600;
+  }
+</style>
+
+<script>
+  (() => {
+    const buscador = document.getElementById('buscador-consultas') as HTMLInputElement | null;
+    const radiosEstado = document.querySelectorAll<HTMLInputElement>('input[name="filtro-estado"]');
+    const checksEje = document.querySelectorAll<HTMLInputElement>('input[name="filtro-eje"]');
+    const cards = document.querySelectorAll<HTMLElement>('.consulta-card');
+    const sinResultados = document.getElementById('sin-resultados');
+
+    function aplicarFiltros() {
+      const texto = (buscador?.value || '').trim().toLowerCase();
+
+      let estadoSeleccionado = 'todas';
+      radiosEstado.forEach((radio) => {
+        if (radio.checked) estadoSeleccionado = radio.value;
+      });
+
+      const ejesSeleccionados = Array.from(checksEje)
+        .filter((chk) => chk.checked)
+        .map((chk) => chk.value);
+
+      let visibles = 0;
+
+      cards.forEach((card) => {
+        const estado = card.getAttribute('data-estado') || '';
+        const eje = card.getAttribute('data-eje') || '';
+        const titulo = (card.getAttribute('data-titulo') || '').toLowerCase();
+
+        const coincideEstado = estadoSeleccionado === 'todas' || estado === estadoSeleccionado;
+        const coincideEje = ejesSeleccionados.length === 0 || ejesSeleccionados.includes(eje);
+        const coincideTexto = texto === '' || titulo.includes(texto);
+
+        const visible = coincideEstado && coincideEje && coincideTexto;
+        card.style.display = visible ? '' : 'none';
+        if (visible) visibles += 1;
+      });
+
+      if (sinResultados) {
+        sinResultados.hidden = visibles !== 0;
+      }
+    }
+
+    buscador?.addEventListener('input', aplicarFiltros);
+    radiosEstado.forEach((radio) => radio.addEventListener('change', aplicarFiltros));
+    checksEje.forEach((chk) => chk.addEventListener('change', aplicarFiltros));
+
+    aplicarFiltros();
+  })();
+</script>

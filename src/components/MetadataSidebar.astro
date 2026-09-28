@@ -1,0 +1,139 @@
+---
+interface Props {
+  estado: 'programada' | 'abierta' | 'finalizada';
+  dependenciaRequirente: string;
+  expediente: string;
+  fechaInicioParticipacion: string;
+  fechaCierreParticipacion: string;
+  ejeGestion: string;
+  etiquetas: string[];
+}
+
+const {
+  estado,
+  dependenciaRequirente,
+  expediente,
+  fechaInicioParticipacion,
+  fechaCierreParticipacion,
+  ejeGestion,
+  etiquetas,
+} = Astro.props;
+
+const ejeVariable: Record<string, string> = {
+  'Espacio Público y Paseos': '--color-eje-espacio-publico',
+  'Obras Hidráulicas y Pluviales': '--color-eje-hidraulica',
+  'Movilidad y Accesibilidad': '--color-eje-movilidad',
+  'Arbolado y Ambiente': '--color-eje-arbolado',
+  'Patrimonio y Puesta en Valor': '--color-eje-patrimonio',
+};
+
+function formatearFecha(fecha: string) {
+  const [anio, mes, dia] = fecha.split('-');
+  return `${dia}/${mes}/${anio}`;
+}
+
+const estadoTexto: Record<string, string> = {
+  programada: 'Participación programada',
+  abierta: 'Participación abierta',
+  finalizada: 'Instancia participativa finalizada',
+};
+---
+
+<aside class="metadata-sidebar sidebar-sticky" aria-label="Datos de la consulta pública">
+  <h2 class="visually-hidden">Datos de la consulta</h2>
+  <dl>
+    <div class="metadata-sidebar__row">
+      <dt>Estado</dt>
+      <dd>{estadoTexto[estado]}</dd>
+    </div>
+    <div class="metadata-sidebar__row">
+      <dt>Dependencia requirente</dt>
+      <dd>{dependenciaRequirente}</dd>
+    </div>
+    <div class="metadata-sidebar__row">
+      <dt>Expediente</dt>
+      <dd class="metadata-sidebar__expediente">{expediente}</dd>
+    </div>
+    <div class="metadata-sidebar__row">
+      <dt>Inicio de participación</dt>
+      <dd>{formatearFecha(fechaInicioParticipacion)}</dd>
+    </div>
+    <div class="metadata-sidebar__row">
+      <dt>Cierre de participación</dt>
+      <dd>{formatearFecha(fechaCierreParticipacion)}</dd>
+    </div>
+    <div class="metadata-sidebar__row">
+      <dt>Eje de gestión</dt>
+      <dd class="metadata-sidebar__eje">
+        <span class="chip-dot" style={`background: var(${ejeVariable[ejeGestion]})`}></span>
+        {ejeGestion}
+      </dd>
+    </div>
+    <div class="metadata-sidebar__row">
+      <dt>Etiquetas</dt>
+      <dd>
+        <div class="metadata-sidebar__chips">
+          {etiquetas.map((etiqueta) => (
+            <span class="chip">{etiqueta}</span>
+          ))}
+        </div>
+      </dd>
+    </div>
+  </dl>
+</aside>
+
+<style>
+  .metadata-sidebar {
+    background: var(--color-blanco);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    padding: 24px;
+  }
+
+  .metadata-sidebar__row {
+    padding: 12px 0;
+    border-bottom: 1px solid #EDEEF1;
+  }
+
+  .metadata-sidebar__row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .metadata-sidebar__row:first-child {
+    padding-top: 0;
+  }
+
+  .metadata-sidebar dt {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #6B6B6B;
+    margin-bottom: 4px;
+  }
+
+  .metadata-sidebar dd {
+    margin: 0;
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  .metadata-sidebar__expediente {
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+
+  .metadata-sidebar__eje {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .metadata-sidebar__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+</style>
