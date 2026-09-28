@@ -46,7 +46,7 @@ function formatearFecha(fecha: string) {
   </div>
   <div class="card-body">
     <EstadoBadge estado={consulta.estado} />
-    <h3><a href={`/consultas/${consulta.slug}`}>{consulta.titulo}</a></h3>
+    <h3><a href={`${import.meta.env.BASE_URL}consultas/${consulta.slug}`}>{consulta.titulo}</a></h3>
     <p class="consulta-card__fecha">{consulta.fechaTexto}</p>
     <p class="consulta-card__eje">{consulta.ejeGestion}</p>
     <div class="consulta-card__chips">
